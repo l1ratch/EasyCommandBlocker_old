@@ -18,11 +18,11 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags
 
-      - name: Set up JDK 1.8
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '8'
+          java-version: '21'
 
       - name: Extract version from pom.xml
         id: extract_version
@@ -64,19 +64,19 @@ jobs:
 
       - name: Rename JAR file to match version
         run: |
-          JAR_FILE=$(ls target/LobbyMaster-*.jar | head -n 1)
+          JAR_FILE=$(ls target/EasyCommandBlocker-*.jar | head -n 1)
           if [ -z "$JAR_FILE" ]; then
             echo "JAR file not found!"
             exit 1
           fi
-          mv "$JAR_FILE" "target/EasyCommandBlocker-${{ env.FINAL_VERSION }}-shaded.jar"
+          mv "$JAR_FILE" "target/EasyCommandBlocker-${{ env.FINAL_VERSION }}.jar"
 
       - name: Install GitHub CLI
-        run: sudo apt-get install gh
+        run: sudo apt-get install gh -y
 
       - name: Authenticate with GitHub CLI
         run: echo "${{ secrets.TOKEN }}" | gh auth login --with-token
 
       - name: Create GitHub Release using gh cli
         run: |
-          gh release create ${{ env.FINAL_VERSION }} target/EasyCommandBlocker-${{ env.FINAL_VERSION }}-shaded.jar --title "${{ env.FINAL_VERSION }}" --notes "${{ env.DESCRIPTION }}"
+          gh release create ${{ env.FINAL_VERSION }} target/EasyCommandBlocker-${{ env.FINAL_VERSION }}.jar --title "${{ env.FINAL_VERSION }}" --notes "${{ env.DESCRIPTION }}"
