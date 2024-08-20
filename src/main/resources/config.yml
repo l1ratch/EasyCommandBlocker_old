@@ -1,11 +1,18 @@
 # EasyCommandBlocker - плагин для легкой и удобной блокировки команд на сервере Minecraft
 #Описание и инструкция: https://github.com/l1ratch/EasyCommandBlocker/tree/master#readme
 
+# Текст по умолчанию
 deftxt: '&cЭта команда заблокирована!'
 
+# Переключатель для работы с командами с двоеточием(/bukkit:versions)
+# false - полное отключение, true - Скрыть и заблокировать, HIDE - Только скрыть, BLOCK - Только заблокировать.
+blockColonCommands: 'true'
+
+# Список заблокированных команд и их настройка
 BlockCMD:
   - 'op', '&4Эта команда заблокирована администратором.', 'tabCompleter: true'
   - 'gm 1', 'deftxt', 'tabCompleter: false'
-  - 'set time 1', ''  #
+  - 'set time 1', ''
   - 'gamemode creative', '&eВы не можете менять режим игры.', 'tabCompleter: true'
+
 
