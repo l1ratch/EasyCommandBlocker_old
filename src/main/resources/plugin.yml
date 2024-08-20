@@ -1,0 +1,7 @@
+name: EasyCommandBlocker
+version: '1.0'
+main: org.l1ratch.easyCommandBlocker.EasyCommandBlocker
+api-version: '1.21'
+load: STARTUP
+authors: [ l1ratch ]
+description: Plugin for block commad(for minecraft spigot server)
